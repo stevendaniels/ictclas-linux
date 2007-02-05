@@ -1,0 +1,6 @@
+How to build:
+    make
+    make module
+
+How to run:
+    ./ictclas test/test.dat > test/test.log
