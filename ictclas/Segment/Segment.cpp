@@ -519,7 +519,12 @@ bool CSegment::BiOptimumSegment(unsigned int nResultCount,double dSmoothingPara,
 
 void CSegment::AddIfNewWord(char* sWord, int nPOS, double dValue)
 {
-    if (nPOS < 0 && sWord && (strncmp(sWord, "δ#", strlen("δ#")) != 0)) {
+    if (nPOS < 0 
+            && ( (nPOS == -28274) ||
+                 (-nPOS == -'n'*256 - 's')
+               )
+            && sWord 
+            && (strncmp(sWord, "δ#", strlen("δ#")) != 0)) {
         for (int i=0; i<m_nNewWordCount; i++) {
             if (strcmp(m_pNewWords[i].sWord, sWord) == 0) {
                 return;
@@ -537,7 +542,7 @@ void CSegment::AddIfNewWord(char* sWord, int nPOS, double dValue)
 
         m_nNewWordCount++;
 
-        my_debug(5, "CSegment::AddIfNewWord(%s)\n", sWord);
+        my_debug(5, "CSegment::AddIfNewWord(%s), nPOS=%d\n", sWord, -nPOS);
     }
 }
 

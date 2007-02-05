@@ -3,7 +3,7 @@
 
 #include "MyDebug.h"
 
-int debug_level = 4;
+int debug_level = 5;
 
 void __debug(const char *fmt, ...)
 {

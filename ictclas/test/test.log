@@ -1,2 +1,8 @@
-Average Time: 0/1 = 0ms
-Total time: 160ms
+CSegment::AddIfNewWord(霍尔顿), nPOS=28274
+Saving 霍尔顿
+CSegment::AddIfNewWord(萨达姆), nPOS=28274
+Saving 萨达姆
+CSegment::AddIfNewWord(陆文军), nPOS=28274
+Saving 陆文军
+Average Time: 30/1 = 30ms
+Total time: 190ms
