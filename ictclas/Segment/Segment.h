@@ -51,6 +51,7 @@ public:
 	//Word Segmentation based on optimum segmentation graph
 	//After unknown word recognition
 	bool Segment(char *sSentence,CDictionary &dictCore,int nResultCount=10);
+    void SaveNewWords(CDictionary &dictCore);
 	CSegment();
 	virtual ~CSegment();
 	PWORD_RESULT *m_pWordSeg;
@@ -69,7 +70,10 @@ protected:
 	bool IsYearTime(char *sNum);
 	bool GenerateWord(int ** nSegRoute, int nIndex);
 private:
+    void AddIfNewWord(char* sWord, int nPOS, double fValue);
 	int *m_npWordPosMapTable;//Record the position map of possible words
 	int m_nWordCount;//Record the End position of possible words
+    PWORD_RESULT m_pNewWords;
+    int m_nNewWordCount;
 };
 #endif

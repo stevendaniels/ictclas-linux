@@ -32,6 +32,7 @@
  ****************************************************************************/
 #include "Dictionary.h"
 #include "Utility.h"
+#include "MyDebug.h"
 #include <string.h>
 #include <strings.h>
 #include <stdlib.h>
@@ -187,13 +188,14 @@ bool CDictionary::LoadNewWords(char *sFilename, int nHandle)
  *  History    : 
  *              1.create 2007-2-5
  *********************************************************************/
-bool CDictionary::SaveNewWord(char *sFilename, char *sWord, int nHandle)
+bool CDictionary::SaveNewWord(char *sWord, int nHandle)
 {
     AddItem(sWord, nHandle, 100);
 
     FILE *fp;
-    if((fp=fopen(sFilename,"wb"))==NULL)
+    if((fp=fopen("data/new.dct","ab+"))==NULL) // TODO: NO MAGIC STRING!
         return false; // fail while opening the file 
+    my_debug(5, "Saving %s\n", sWord);
     fprintf(fp, "%s\n", sWord); 
     fclose(fp);
 

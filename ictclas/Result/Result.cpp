@@ -180,6 +180,8 @@ bool CResult::Processing(char *sSentence,unsigned int nCount)
 	//Bigram
 	m_Seg.BiOptimumSegment(nCount,m_dSmoothingPara,m_dictBigram,m_dictCore);
 
+    m_Seg.SaveNewWords(m_dictCore);
+
 #if _ICT_DEBUG
 	printf("After BiOptimumSegment.\n");
 #endif

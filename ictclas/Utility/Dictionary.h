@@ -121,7 +121,7 @@ public:
     bool LoadNewWords(char *sFilename, int nHandle='n'*256);
 	int  GetWordType(char *sWord);
 	bool PreProcessing(char *sWord,int *nId,char *sWordRet,bool bAdd=false);
-    bool SaveNewWord(char *sFilename, char *sWord, int nHandle);
+    bool SaveNewWord(char *sWord, int nHandle);
 
 	INDEX_TABLE   m_IndexTable[CC_NUM];
     PMODIFY_TABLE m_pModifyTable;

@@ -34,9 +34,11 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <assert.h>
 
 #include "../Utility/Dictionary.h"
 #include "../Utility/Utility.h"
+#include "../Utility/MyDebug.h"
 #include "Segment.h"
 #include "NShortPath.h"
 //////////////////////////////////////////////////////////////////////
@@ -54,6 +56,7 @@ CSegment::CSegment()
 	m_npWordPosMapTable=0;//Record the start position of possible words
 	m_nWordCount=0;//Record the End position of possible words
 	m_graphOptimum.SetRowFirst();//Set row first
+
 }
 
 CSegment::~CSegment()
@@ -66,6 +69,7 @@ CSegment::~CSegment()
 	}
 	delete m_pWordSeg;
 	m_pWordSeg = NULL;
+
 }
 
 bool CSegment::Segment(char *sSentence,CDictionary &dictCore,int nResultCount)
@@ -243,6 +247,7 @@ bool CSegment::GenerateWord(int **nSegRoute, int nIndex)
 		m_pWordSeg[nIndex][k].nHandle=nPOS;//Get the POS of current word
 		m_pWordSeg[nIndex][k].dValue=fValue;//(int)(MAX_FREQUENCE*exp(-fValue));//Return the frequency of current word
 		m_graphOptimum.SetElement(nStartVertex,nEndVertex,fValue,nPOS,sCurWord);
+        AddIfNewWord(sCurWord, nPOS, fValue);
 		//Generate optimum segmentation graph according the segmentation result
 		i++;//Skip to next atom
 		k++;//Accept next word
@@ -512,4 +517,42 @@ bool CSegment::BiOptimumSegment(unsigned int nResultCount,double dSmoothingPara,
 	return true;
 }
 
+void CSegment::AddIfNewWord(char* sWord, int nPOS, double dValue)
+{
+    if (nPOS < 0 && sWord && (strncmp(sWord, "δ#", strlen("δ#")) != 0)) {
+        for (int i=0; i<m_nNewWordCount; i++) {
+            if (strcmp(m_pNewWords[i].sWord, sWord) == 0) {
+                return;
+            }
+        }
 
+        if (m_pNewWords == NULL) {
+            m_pNewWords=new WORD_RESULT[MAX_WORDS];
+            m_nNewWordCount=0;
+        }
+
+        m_pNewWords[m_nNewWordCount].nHandle = -nPOS;
+        m_pNewWords[m_nNewWordCount].dValue = dValue;;
+        strcpy(m_pNewWords[m_nNewWordCount].sWord, sWord);
+
+        m_nNewWordCount++;
+
+        my_debug(5, "CSegment::AddIfNewWord(%s)\n", sWord);
+    }
+}
+
+void CSegment::SaveNewWords(CDictionary &dictCore)
+{
+    if (m_pNewWords == NULL) {
+        return;
+    }
+
+    for (int i=0; i<m_nNewWordCount; i++) {
+        assert(m_pNewWords[i].sWord != NULL);
+        dictCore.SaveNewWord(m_pNewWords[i].sWord, m_pNewWords[i].nHandle);
+    } 
+
+    delete[] m_pNewWords;
+    m_pNewWords = NULL;
+    m_nNewWordCount=0;
+}

@@ -1,5 +1,5 @@
 CC=g++
-CPPFLAGS= -O3 -Wall
+CPPFLAGS= -g -Wall
 
 OBJS= ictclas.o Result/Result.o Segment/DynamicArray.o Segment/NShortPath.o \
 	  Segment/Queue.o Segment/SegGraph.o Segment/Segment.o \

@@ -133,10 +133,6 @@ ELEMENT_TYPE CDynamicArray::GetElement(int nRow, int nCol,PARRAY_CHAIN pStart,PA
 
 int CDynamicArray::SetElement(unsigned int nRow, unsigned int nCol, ELEMENT_TYPE fValue,int nPOS,char *sWord)
 {
-    if (nPOS < 0 && sWord && (strncmp(sWord, "δ#", strlen("δ#")) != 0)) {
-        my_debug(5, "New word: '%s'\n", sWord);
-    }
-
     PARRAY_CHAIN pCur=m_pHead,pPre=NULL,pAdd;//The pointer of array chain
     if(nRow>m_nRow)//Set the array row
         m_nRow=nRow;
