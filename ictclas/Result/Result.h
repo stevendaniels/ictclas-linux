@@ -19,7 +19,7 @@
 #include "../Segment/Segment.h"
 #include "../Tag/Span.h"
 #include "../Unknown/UnknowWord.h"
-#define _ICT_DEBUG 1
+#define _ICT_DEBUG 0
 
 class CResult  
 {

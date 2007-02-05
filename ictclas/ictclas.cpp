@@ -95,7 +95,7 @@ void ICTCLAS::OpenFile(char* sSourceFile)
     clock_t start, finish;
     strcpy(sResultFile,sSourceFile);//Set the result file name and path
     unsigned int nLen=strlen(sSourceFile);
-    strncpy(sResultFile+nLen-4,"_cla.txt",10);//Change the extension
+    strncpy(sResultFile+nLen-3,"seg",3);//Change the extension
     sResultFile[nLen+4]=0;
     start=clock();
     if(!m_ICTCLAS.FileProcessing(sSourceFile,sResultFile))
@@ -152,7 +152,7 @@ bool ICTCLAS::CheckGB2312(const char *s)
 
 int main(int argc, char* argv[])
 { 
-    char* fileName = "test/test.txt";
+    char* fileName = "test/test.dat";
     int nTimes = 1;
     int nTimeSum = 0;
     clock_t start = clock(), finish;

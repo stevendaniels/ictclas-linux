@@ -164,13 +164,11 @@ bool CSegGraph::GenerateWordNet(char *sSentence,CDictionary &dictCore,bool	bOrig
 	  }
 	  i+=1;//Start from i++;
 	}
-    printf("Debug: GenerateWordNet(%s): All the word, done\n", sSentence);
 	return true;
 }
 
 bool CSegGraph::AtomSegment(char *sSentence)
 {
-    printf("Debug: begin AtomSegment \n");
     unsigned int i=0,j=0,nCurType,nNextType;	
 	//i is the pointer of sentence string
 	//j is the pointer of pAtoms
@@ -196,7 +194,6 @@ bool CSegGraph::AtomSegment(char *sSentence)
 			m_nAtomLength[j]=strlen(SENTENCE_END);
 			m_nAtomPOS[j]=CT_SENTENCE_END;//init
 			i+=m_nAtomLength[j];
-            printf("Debug: m_sAtom[%d]: %s\n", j, m_sAtom[j]);
 			j+=1;
 			m_sAtom[j][0]=0;//Set the first word as null
 			m_nAtomLength[j]=0;
@@ -219,7 +216,6 @@ bool CSegGraph::AtomSegment(char *sSentence)
 		
 		if(nCurType==CT_CHINESE||nCurType==CT_INDEX||nCurType==CT_DELIMITER||nCurType==CT_OTHER)
 		{//Chinese char, index number,delimiter and other is treated as atom
-            printf("Debug: m_sAtom[%d]: %s\n", j, m_sAtom[j]);
 			m_nAtomLength[j]=strlen(m_sAtom[j]);//Save its length
 			j+=1;//Skip to next atom
 			m_sAtom[j][0]=0;//init
@@ -232,7 +228,6 @@ bool CSegGraph::AtomSegment(char *sSentence)
 			if(nNextType!=nCurType||i==strlen(sSentence))
 			//Reaching end or next char type is different from current char
 			{
-                printf("Debug: m_sAtom[%d]: %s\n", j, m_sAtom[j]);
 				m_nAtomLength[j]=strlen(m_sAtom[j]);//Save its length	
 				j+=1;
 				m_sAtom[j][0]=0;//init
@@ -240,6 +235,5 @@ bool CSegGraph::AtomSegment(char *sSentence)
 		}
 	}
 	m_nAtomCount=j;//The count of segmentation atoms
-    printf("Debug: end AtomSegment \n");
 	return true;
 }

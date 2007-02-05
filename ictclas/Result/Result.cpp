@@ -142,7 +142,6 @@ bool CResult::Output(PWORD_RESULT pItem, char *sResult,bool bFirstWordIgnore)
 bool CResult::Processing(char *sSentence,unsigned int nCount)
 {
 	int nIndex;
-	printf("CResult::Processing===sSentence[%s]\n",sSentence);
 #if _ICT_DEBUG
 	char *sSegment;
 	sSegment=new char[MAX_SENTENCE_LEN*2];
@@ -169,15 +168,13 @@ bool CResult::Processing(char *sSentence,unsigned int nCount)
 	//Person Recognition
 #if _ICT_DEBUG
 	printf("After person recognition.\n");
-#endif
 	for(nIndex=0;nIndex<m_Seg.m_nSegmentCount;nIndex++)
 	{
-#if _ICT_DEBUG
 		m_POSTagger.POSTagging(m_Seg.m_pWordSeg[nIndex],m_dictCore,m_dictCore);
 		Output(m_Seg.m_pWordSeg[nIndex],sSegment);
 		printf("POS Tag%d:%s\n",nIndex+1,sSegment);
-#endif
 	}
+#endif
 	//Unigram
 	//m_Seg.OptimumSegmet(nCount);
 	//Bigram

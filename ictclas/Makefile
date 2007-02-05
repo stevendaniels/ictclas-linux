@@ -6,7 +6,8 @@ OBJS= ictclas.o Result/Result.o Segment/DynamicArray.o Segment/NShortPath.o \
 	  Tag/Span.o \
 	  Unknown/UnknowWord.o \
 	  Utility/ContextStat.o Utility/Dictionary.o \
-	  Utility/Utility.o
+	  Utility/Utility.o \
+	  Utility/MyDebug.o
 
 all: $(OBJS)
 	$(CC) $(CPPFLAGS) -o ictclas $(OBJS)
@@ -40,6 +41,8 @@ Utility/ContextStat.o: Utility/ContextStat.cpp Utility/ContextStat.h
 Utility/Dictionary.o: Utility/Dictionary.cpp Utility/Dictionary.h
 
 Utility/Utility.o: Utility/Utility.cpp Utility/Utility.h
+
+Utility/MyDebug.o: Utility/MyDebug.cpp Utility/MyDebug.h
 
 clean:
 	rm -f $(OBJS) ictclas ictclas_wrap.cxx ictclas_wrap.o ictclas.pm ictclas.so
