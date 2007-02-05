@@ -117,8 +117,9 @@ bool CSegGraph::GenerateWordNet(char *sSentence,CDictionary &dictCore,bool	bOrig
 			}
 			if(!bOriginalFreq)//Not original frequency
 				m_segGraph.SetElement(i,i+1,0,nPOS);//init the link with minimum
-			else
+			else {
 				m_segGraph.SetElement(i,i+1,dValue,nPOS,sWord);//init the link with minimum
+            }
 		}
     }
 	i=0;
@@ -149,8 +150,9 @@ bool CSegGraph::GenerateWordNet(char *sSentence,CDictionary &dictCore,bool	bOrig
 			  {
 				if(!bOriginalFreq)//Not original frequency
 					m_segGraph.SetElement(i,j,-log(nTotalFreq+1)+log(MAX_FREQUENCE),nMatchHandle[0]);
-				else
+				else {
 					m_segGraph.SetElement(i,j,nTotalFreq,nMatchHandle[0],sWord);
+                }
 			  }
 			  else 
 			  {

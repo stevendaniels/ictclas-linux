@@ -100,6 +100,9 @@ typedef struct tagModifyTable MODIFY_TABLE,*PMODIFY_TABLE;
 class CDictionary  
 {
 public:
+	CDictionary();
+    virtual ~CDictionary();
+
 	bool Optimum();
 	bool Merge(CDictionary dict2,int nRatio);
 	bool OutputChars(char *sFilename);
@@ -118,8 +121,8 @@ public:
     bool LoadNewWords(char *sFilename, int nHandle='n'*256);
 	int  GetWordType(char *sWord);
 	bool PreProcessing(char *sWord,int *nId,char *sWordRet,bool bAdd=false);
-	CDictionary();
-    virtual ~CDictionary();
+    bool SaveNewWord(char *sFilename, char *sWord, int nHandle);
+
 	INDEX_TABLE   m_IndexTable[CC_NUM];
     PMODIFY_TABLE m_pModifyTable;
 	//The data for modify  

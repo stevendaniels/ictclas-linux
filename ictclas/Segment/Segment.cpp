@@ -511,3 +511,5 @@ bool CSegment::BiOptimumSegment(unsigned int nResultCount,double dSmoothingPara,
 	nSegRoute = NULL;
 	return true;
 }
+
+

@@ -170,6 +170,36 @@ bool CDictionary::LoadNewWords(char *sFilename, int nHandle)
     return true; 
 }
 
+
+/*********************************************************************
+ *
+ *  Func Name  : SaveNewWord
+ *
+ *  Description: Save a new word
+ *              
+ *
+ *  Parameters : sFilename: the file name
+ *               sWord: the new word
+ *               nHandle: the handle number
+ *
+ *  Returns    : success or fail
+ *  Author     : chen.zhongguo
+ *  History    : 
+ *              1.create 2007-2-5
+ *********************************************************************/
+bool CDictionary::SaveNewWord(char *sFilename, char *sWord, int nHandle)
+{
+    AddItem(sWord, nHandle, 100);
+
+    FILE *fp;
+    if((fp=fopen(sFilename,"wb"))==NULL)
+        return false; // fail while opening the file 
+    fprintf(fp, "%s\n", sWord); 
+    fclose(fp);
+
+    return true; 
+}
+
 /*********************************************************************
  *
  *  Func Name  : Save
