@@ -57,6 +57,8 @@ CSegment::CSegment()
 	m_nWordCount=0;//Record the End position of possible words
 	m_graphOptimum.SetRowFirst();//Set row first
 
+    m_pNewWords = NULL;
+    m_nNewWordCount = 0; 
 }
 
 CSegment::~CSegment()
@@ -69,6 +71,12 @@ CSegment::~CSegment()
 	}
 	delete m_pWordSeg;
 	m_pWordSeg = NULL;
+
+    if (m_pNewWords != NULL) 
+    {
+        delete [] m_pNewWords;
+        m_pNewWords = NULL;
+    }
 
 }
 
@@ -522,6 +530,7 @@ void CSegment::AddIfNewWord(char* sWord, int nPOS, double dValue)
     if (( (nPOS == -28274) || (nPOS == -28275) ) // nr or ns
             && sWord && (strncmp(sWord, "δ#", strlen("δ#")) != 0)) {
         for (int i=0; i<m_nNewWordCount; i++) {
+            assert(m_pNewWords[i].sWord != NULL);
             if (strcmp(m_pNewWords[i].sWord, sWord) == 0) {
                 return;
             }
@@ -551,6 +560,7 @@ void CSegment::SaveNewWords(CDictionary &dictCore)
     for (int i=0; i<m_nNewWordCount; i++) {
         assert(m_pNewWords[i].sWord != NULL);
         dictCore.SaveNewWord(m_pNewWords[i].sWord, m_pNewWords[i].nHandle);
+        delete m_pNewWords[i].sWord;
     } 
 
     delete[] m_pNewWords;

@@ -14,10 +14,8 @@ for ($i=0; $i<10; $i++) {
 $segmenter->DESTROY();
 
 sub main {
-    $segmenter->SetSource("长长的RAMBLA大街???????????????");
-    $segmenter->Run();
+    $segmenter->Run("长长的RAMBLA大街???????????????");
 
-    #$segmenter->OpenFile('test/test.txt');
     print $segmenter->GetResult(), "\n";
 }
 

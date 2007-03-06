@@ -19,8 +19,6 @@ public:
     char* GetResult()
     { return m_sResult; }
 
-    void SetSource(char* sSource);
-
     void SetOutputFormat(int nOutputFormat)
     { m_ICTCLAS.m_nOutputFormat = nOutputFormat; }
 
@@ -41,7 +39,6 @@ protected:
 	double	m_sScore;
 	bool    m_bDisable;
 	char*	m_sResult;
-	char*	m_sSource;
 };
 
 #endif // ifndef ICTCLAS_H

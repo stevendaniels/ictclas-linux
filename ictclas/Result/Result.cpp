@@ -18,6 +18,7 @@
 #include "Result.h"
 #include "../Utility/Utility.h"
 #include "../Utility/MyDebug.h"
+
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -31,12 +32,12 @@ CResult::CResult()
         m_pResult[i]=new WORD_RESULT[MAX_WORDS];
     }
 
-    m_dictCore.Load("data/coreDict.dct");
-    m_POSTagger.LoadContext("data/lexical.ctx");
-    m_dictCore.LoadNewWords("data/new.dct");
+    m_dictCore.Load(ABSOLUTE("data/coreDict.dct"));
+    m_POSTagger.LoadContext(ABSOLUTE("data/lexical.ctx"));
+    m_dictCore.LoadNewWords(ABSOLUTE("data/new.dct"));
     /*
-       m_dictCore.Load("data/Dict.dct");
-       m_POSTagger.LoadContext("data/trainTest.ctx");
+       m_dictCore.Load(ABSOLUTE("data/Dict.dct"));
+       m_POSTagger.LoadContext(ABSOLUTE("data/trainTest.ctx"));
        */
     /*
 
@@ -47,24 +48,24 @@ CResult::CResult()
        m_dictCore.AddItem("Ç§Äê",'t'*256,200);
 
        m_dictCore.Optimum();
-       m_dictCore.Save("data/coreDictOptimum.dct");
+       m_dictCore.Save(ABSOLUTE("data/coreDictOptimum.dct"));
        */
 
 
     m_POSTagger.SetTagType();
 
-    m_uPerson.Configure("data/nr",TT_PERSON);
+    m_uPerson.Configure(ABSOLUTE("data/nr"),TT_PERSON);
     //Set the person recognition configure
-    m_uPlace.Configure("data/ns",TT_PLACE);
+    m_uPlace.Configure(ABSOLUTE("data/ns"),TT_PLACE);
     //Set the place recognition configure
-    m_uTransPerson.Configure("data/tr",TT_TRANS_PERSON);
+    m_uTransPerson.Configure(ABSOLUTE("data/tr"),TT_TRANS_PERSON);
     //Set the transliteration person recognition configure
 
     m_nOperateType=2;//0:Only Segment;1: First Tag; 2:Second Type
     m_nOutputFormat=0;//0:PKU criterion;1:973 criterion; 2: XML criterion
 
     m_dSmoothingPara=0.1;//Smoothing parameter
-    m_dictBigram.Load("data/BigramDict.dct");
+    m_dictBigram.Load(ABSOLUTE("data/BigramDict.dct"));
 
 }
 

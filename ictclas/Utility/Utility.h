@@ -34,6 +34,8 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
+#define ABSOLUTE(path) "/home/adways/project/Indexer/COD/lib/Lingua/ZH/Segment/"path
+
 #define  CT_SENTENCE_BEGIN 1//Sentence begin 
 #define  CT_SENTENCE_END   4//Sentence ending
 #define  CT_SINGLE  5//SINGLE byte

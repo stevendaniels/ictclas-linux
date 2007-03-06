@@ -193,7 +193,7 @@ bool CDictionary::SaveNewWord(char *sWord, int nHandle)
     AddItem(sWord, nHandle, 100);
 
     FILE *fp;
-    if((fp=fopen("data/new.dct","ab+"))==NULL) // TODO: NO MAGIC STRING!
+    if((fp=fopen(ABSOLUTE("data/new.dct"),"ab+"))==NULL) // TODO: NO MAGIC STRING!
         return false; // fail while opening the file 
     my_debug(5, "Saving %s\n", sWord);
     fprintf(fp, "%s\n", sWord); 
