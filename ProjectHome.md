@@ -1,0 +1,1 @@
+ICTCLAS is an open-source Chinese Segmenter. This is a modified version for linux. A perl binding is also provided.
